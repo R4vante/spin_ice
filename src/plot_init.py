@@ -1,39 +1,38 @@
-# plot_ice.py
 import numpy as np
 import matplotlib.pyplot as plt
 
 N = 10
-grid = np.zeros((N, N, 4), dtype=int)
+grid = np.zeros((N, N, 2), dtype=int)  # Alleen up en right
 
 with open("ice_grid.txt") as f:
     for i, line in enumerate(f):
         values = line.strip().split()
         for j, val in enumerate(values):
-            grid[i, j] = list(map(int, val))
+            grid[i, j] = list(map(int, list(val)))
 
-# pijlen tekenen
 fig, ax = plt.subplots(figsize=(8, 8))
 for i in range(N):
     for j in range(N):
-        x, y = j, N - i
-        u, d, l, r = grid[i, j]
+        x, y = j, N - i  # om y-as om te draaien
 
-        if u: ax.arrow(x, y, 0, 0.4, head_width=0.1, color='blue')
-        else: ax.arrow(x, y + 0.4, 0, -0.4, head_width=0.1, color='red')
+        u, r = grid[i, j]
 
-        if d: ax.arrow(x, y, 0, -0.4, head_width=0.1, color='blue')
-        else: ax.arrow(x, y - 0.4, 0, 0.4, head_width=0.1, color='red')
+        ax.plot(x, y, 'ko', markersize=5)
 
-        if l: ax.arrow(x, y, -0.4, 0, head_width=0.1, color='blue')
-        else: ax.arrow(x - 0.4, y, 0.4, 0, head_width=0.1, color='red')
+        if u:
+            ax.arrow(x, y - 1, 0, 1., head_width=0.15, color='blue', length_includes_head=True)
+        else:
+            ax.arrow(x, y + 1, 0, -1, head_width=0.15, color='red', length_includes_head=True)
 
-        if r: ax.arrow(x, y, 0.4, 0, head_width=0.1, color='blue')
-        else: ax.arrow(x + 0.4, y, -0.4, 0, head_width=0.1, color='red')
+        if r:
+            ax.arrow(x - 1, y, 1, 0, head_width=0.15, color='blue', length_includes_head=True)
+        else:
+            ax.arrow(x + 1, y, -1, 0, head_width=0.15, color='red', length_includes_head=True)
 
 ax.set_xlim(-1, N)
 ax.set_ylim(-1, N)
 ax.set_aspect('equal')
 ax.axis('off')
-plt.title("Six-Vertex Ice Model")
+plt.title("Six-Vertex Model")
 plt.show()
 
