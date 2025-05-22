@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -std=c99 -O2 -lm
 
 # filenames
 TARGET = spinice
-OBJS = main.o utils.o 
+OBJS = main.o grid.o
 
 # default build rule
 all: $(TARGET)
