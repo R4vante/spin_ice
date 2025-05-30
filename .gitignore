@@ -1,3 +1,12 @@
+# ignore all
+*
+
+# Unignore directories
+!*/
+
+# Unignore files with extension
+!*.*
+
 # Prerequisites
 *.d
 
@@ -53,3 +62,8 @@ dkms.conf
 
 # MACOSX specific
 .DS_Store
+
+# Executables
+*.exe
+*.out
+*/spinice
