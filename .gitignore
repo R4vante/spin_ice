@@ -66,4 +66,9 @@ dkms.conf
 # Executables
 *.exe
 *.out
-src/spinice
+*spinice
+
+# Data files/directories
+*.dat
+*.txt
+*data/
