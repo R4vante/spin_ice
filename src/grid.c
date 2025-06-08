@@ -3,35 +3,27 @@
 #include <time.h>
 #include "grid.h"
 
-int h[N][N+1];
-int v[N+1][N];
+
+int h[N][N];
+int v[N][N];
 
 Vertex get_vertex(int i, int j) {
     Vertex vtx;
 
+    int up_i = MOD(i - 1, N);
+    int left_j = MOD(j - 1, N);
+
     // Up pijl tussen (i,j) en (i-1,j)
-    if (i == 0)
-        vtx.up = -1; // randconditie (of periodic mogelijk)
-    else
-        vtx.up = (v[i-1][j] == 1) ? 0 : 1;
+    vtx.up = (v[up_i][j] == 1) ? 0 : 1;
 
     // Down pijl tussen (i,j) en (i+1,j)
-    if (i == N)
-        vtx.down = -1;
-    else
-        vtx.down = (v[i][j] == 1) ? 1 : 0;
+    vtx.down = (v[i][j] == 1) ? 1 : 0;
 
     // Left pijl tussen (i,j) en (i,j-1)
-    if (j == 0)
-        vtx.left = -1;
-    else
-        vtx.left = (h[i][j-1] == 1) ? 0 : 1;
+    vtx.left = (h[i][left_j] == 1) ? 0 : 1;
 
     // Right pijl tussen (i,j) en (i,j+1)
-    if (j == N)
-        vtx.right = -1;
-    else
-        vtx.right = (h[i][j] == 1) ? 1 : 0;
+    vtx.right = (h[i][j] == 1) ? 1 : 0;
 
     return vtx;
 }
@@ -54,12 +46,12 @@ const int valid_vertices[6][4] = {
 
 void generate_grid() {
     for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N + 1; j++) {
+        for (int j = 0; j < N; j++) {
             h[i][j] = 1; // right
         }
     }
 
-    for (int i = 0; i < N + 1; i++) {
+    for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
             v[i][j] = 1; // up
         }

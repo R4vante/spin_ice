@@ -5,8 +5,10 @@
 
 #define N 10
 
-extern int h[N][N+1];
-extern int v[N+1][N];
+#define MOD(a, b) (((a) + (b)) % (b))
+
+extern int h[N][N];
+extern int v[N][N];
 
 Vertex get_vertex(int i, int j);
 int is_vallid_vertex(Vertex v);
