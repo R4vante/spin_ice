@@ -11,7 +11,7 @@ extern int h[N][N];
 extern int v[N][N];
 
 Vertex get_vertex(int i, int j);
-int is_vallid_vertex(Vertex v);
+int is_valid_vertex(Vertex v);
 void generate_grid();
 void save_to_file(const char* filename);
 

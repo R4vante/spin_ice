@@ -12,5 +12,13 @@ int main() {
         short_loop_step();
     }
     save_to_file("ice_grid_1.dat");
+
+    generate_grid();
+
+    for (int i = 0; i < 10000; i++) {
+        long_loop_step();
+    }
+    save_to_file("ice_grid_2.dat");
     return 0;
+
 }
