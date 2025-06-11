@@ -1,16 +1,16 @@
 # compiler & flags
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c99 -O2 -lm
+CFLAGS = -Wall -Wextra -std=c99 -O2
 
 # filenames
 TARGET = spinice
-OBJS = main.o grid.o mc.o
+OBJS = main.o grid.o mc.o calc.o
 
 # default build rule
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(OBJS) -o $@ -lm
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $<
@@ -19,3 +19,4 @@ $(TARGET): $(OBJS)
 clean:
 	rm -f *.o $(TARGET)
 	rm -f *.dat *.txt
+
