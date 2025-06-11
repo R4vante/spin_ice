@@ -34,6 +34,7 @@ int is_valid_vertex(Vertex v) {
     return (in == 1 && out == 1) || (in == 2 && out == 2);
 }
 
+
 const int valid_vertices[6][4] = {
     {1, 0, 0, 1}, // up, down, left, right
     {0, 1, 1, 0},
@@ -43,6 +44,18 @@ const int valid_vertices[6][4] = {
     {0, 1, 0, 1}
 };
 
+int get_vertex_type(Vertex v) {
+    for (int i = 0; i < 6; i++) {
+        if (v.up == valid_vertices[i][0] &&
+            v.down == valid_vertices[i][1] &&
+            v.left == valid_vertices[i][2] &&
+            v.right == valid_vertices[i][3]) {
+            return i;
+        }
+    }
+
+    return -1;
+}
 
 void generate_grid() {
     for (int i = 0; i < N; i++) {

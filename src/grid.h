@@ -14,5 +14,6 @@ Vertex get_vertex(int i, int j);
 int is_valid_vertex(Vertex v);
 void generate_grid();
 void save_to_file(const char* filename);
+int get_vertex_type(Vertex v);
 
 #endif // !GRID_H
